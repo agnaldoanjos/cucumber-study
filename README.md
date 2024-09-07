@@ -1,6 +1,6 @@
 # Estudo Cucumber
 
-Este projeto é uma POC do uso do **Cucumber** em combinação com **Spring Boot** demonstrando a configuração necessária para validar operações simples.
+Este projeto demonstra o uso do **Cucumber** em combinação com **Spring Boot** e os princípios de **BDD (Behavior Driven Development)** para validar operações de endpoints REST.
 
 ## Sumário
 
@@ -14,21 +14,20 @@ Este projeto é uma POC do uso do **Cucumber** em combinação com **Spring Boot
 
 ## Sobre o Projeto
 
-O objetivo deste projeto é mostrar como implementar uma abordagem **BDD** usando **Cucumber** para testar uma aplicação baseada em microserviços.
+O objetivo deste projeto é mostrar como implementar uma abordagem **BDD** usando **Cucumber** para testar uma aplicação Spring Boot. O projeto tem endpoints simples para testes, incluindo validação de respostas e códigos de status HTTP.
 
 ### Principais Funcionalidades:
 
 - **Testes de integração** utilizando Cucumber.
 - BDD para descrever cenários de teste.
 - Implementação de exemplo para testar endpoints REST com Cucumber.
-- Microserviço de Gestão de Pessoas de exemplo.
 
 ## Tecnologias Utilizadas
 
 Este projeto foi construído com o seguinte stack:
 
 - **Java 21**
-- **Spring Boot** (para construção do microserviço de Gestão de Pessoas)
+- **Spring Boot** (para construção dos endpoints REST)
 - **Cucumber** (para escrita dos cenários de BDD)
 - **JUnit 5** (para executar os testes)
 - **Maven** (para gerenciar dependências)
@@ -41,11 +40,11 @@ O projeto segue uma estrutura comum de Spring Boot e Cucumber:
 ├── src
 │   ├── main
 │   │   ├── java
-│   │   │   └── net.home (código-fonte do serviço de exemplo)
+│   │   │   └── net.home (código-fonte do serviço REST)
 │   ├── test
 │   │   ├── java
 │   │   │   └── net.home
-│   │   │       ├── stepdefinitions (path com as definições de passos do Cucumber)
+│   │   │       ├── stepdefinitions (definições de passos do Cucumber)
 │   │   │       └── runners (executores de teste do Cucumber)
 │   └── resources
 │       └── features (arquivos de feature do Cucumber para cenários de BDD)
@@ -75,44 +74,40 @@ Para executar os testes do Cucumber, siga os passos abaixo:
 
 Isso irá executar todos os cenários de teste definidos no diretório `features`.
 
-Se você quiser rodar apenas arquivos ou cenários de teste específicos, pode usar tags nos seus arquivos `.feature` e executar os testes com:
+## Exemplo de Cenário
 
-```bash
-mvn clean test -Dcucumber.options="--tags @SuaTag"
-```
+Aqui está um exemplo de cenários **Cucumber** para testar os endpoints `/home`, `/hello` e `/version` fornecidos pelo serviço REST:
 
-## Exemplo de Cenário para uma serviço fictício de Gestão de Pessoas
-
-Aqui está um exemplo de um cenário **Cucumber** para criar uma nova pessoa num serviço de exemplo:
+### Arquivo Feature - `message.feature`
 
 ```gherkin
-Feature: Gestão de Pessoas
+@All
+Feature: A mensagem pode ser recuperada
 
-  Scenario: Criando uma nova pessoa
-    Given a pessoa com nome "João Silva" e idade "30"
-    When eu envio uma requisição POST para "/persons"
-    Then o status da resposta deve ser 201
-    And a pessoa deve ser salva no sistema
+  Scenario: Cliente faz chamada para POST /home
+    When o cliente chama /home
+    Then o cliente recebe o código de status 200
+    And o cliente recebe a versão do servidor "hello"
+
+  Scenario: Cliente faz chamada para GET /hello
+    Given o cliente chama /hello
+    When o cliente recebe o código de status 200
+    Then o cliente recebe a versão do servidor "hello"
 ```
 
-Este cenário fará:
-
-1. Definir uma nova pessoa com nome e idade.
-2. Enviar uma requisição POST para o endpoint `/persons`.
-3. Verificar que o status da resposta é `201 Created`.
-4. Garantir que a pessoa foi salva no sistema.
-
-Outro exemplo de cenário para consultar uma pessoa por ID pode ser assim:
+### Arquivo Feature - `version.feature`
 
 ```gherkin
-Feature: Gestão de Pessoas
+@All
+Feature: A versão pode ser recuperada
 
-  Scenario: Consultando uma pessoa por ID
-    Given uma pessoa existe com o nome "Maria Souza" e idade "25"
-    When eu envio uma requisição GET para "/persons/{id}"
-    Then o status da resposta deve ser 200
-    And o corpo da resposta deve conter os detalhes da pessoa
+  Scenario: Cliente faz chamada para GET /version
+    When o cliente chama /version
+    Then o cliente recebe o código de status 200
+    And o cliente recebe a versão do servidor "1.0"
 ```
+
+Esses cenários verificam se o cliente faz chamadas HTTP para os endpoints `/home`, `/hello` e `/version` e validam o código de status da resposta, bem como o valor retornado pela aplicação (neste caso, "hello" e "1.0").
 
 ## Contribuindo
 
