@@ -1,6 +1,6 @@
 # Estudo Cucumber
 
-Este projeto demonstra o uso do **Cucumber** em combinação com **Spring Boot** e os princípios de **BDD (Behavior Driven Development)** para validar operações de um microserviço de "Gestão de Pessoas".
+Este projeto é uma POC do uso do **Cucumber** em combinação com **Spring Boot** demonstrando a configuração necessária para validar operações simples.
 
 ## Sumário
 
@@ -14,7 +14,7 @@ Este projeto demonstra o uso do **Cucumber** em combinação com **Spring Boot**
 
 ## Sobre o Projeto
 
-O objetivo deste projeto é mostrar como implementar uma abordagem **BDD** usando **Cucumber** para testar uma aplicação baseada em microserviços. O microserviço lida com operações relacionadas à **Gestão de Pessoas**, como adicionar, atualizar, consultar e excluir registros.
+O objetivo deste projeto é mostrar como implementar uma abordagem **BDD** usando **Cucumber** para testar uma aplicação baseada em microserviços.
 
 ### Principais Funcionalidades:
 
@@ -81,9 +81,9 @@ Se você quiser rodar apenas arquivos ou cenários de teste específicos, pode u
 mvn clean test -Dcucumber.options="--tags @SuaTag"
 ```
 
-## Exemplo de Cenário
+## Exemplo de Cenário para uma serviço fictício de Gestão de Pessoas
 
-Aqui está um exemplo de um cenário **Cucumber** para criar uma nova pessoa no serviço de Gestão de Pessoas:
+Aqui está um exemplo de um cenário **Cucumber** para criar uma nova pessoa num serviço de exemplo:
 
 ```gherkin
 Feature: Gestão de Pessoas
