@@ -1,10 +1,10 @@
-package net.home.steps;
+package net.home.stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.home.steps.base.DefinitionBase;
+import net.home.stepdefinitions.base.DefinitionBase;
 import org.hamcrest.MatcherAssert;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatusCode;

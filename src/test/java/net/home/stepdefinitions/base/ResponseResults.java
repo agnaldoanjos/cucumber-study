@@ -1,4 +1,4 @@
-package net.home.steps.base;
+package net.home.stepdefinitions.base;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.client.ClientHttpResponse;
